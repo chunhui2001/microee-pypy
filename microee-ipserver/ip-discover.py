@@ -11,19 +11,12 @@ def ip_range(environ, response):
         ip_range.append(str(a));
     yield json.dumps(ip_range).encode('utf-8');
 
-def hello(environ, response):
-    response('200 Ok', [('Content-Type', 'text/plain;charset=utf-8')]);
-    params = environ['params'];
-    text = 'Hello: ' + str(params.get('name'));
-    yield text.encode('utf-8');
-
 ### https://www.tutorialspoint.com/python/python_cgi_programming.htm
 if __name__ == '__main__':
     from resty import PathDispatcher;
     from wsgiref.simple_server import make_server;
     # Create the dispatcher and registry functions
     dispatcher = PathDispatcher();
-    dispatcher.register('GET', '/hello', hello);
     dispatcher.register('GET', '/ip_range', ip_range);
     # Launch a basic server
     httpd = make_server('', 8080, dispatcher);
