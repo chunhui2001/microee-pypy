@@ -1,8 +1,9 @@
 import cgi;
 
 def notFound(environ, response):
-    response('404 Not Found', [('Content-Type', 'text/plain')]);
-    return [b'Not Found'];
+    result = 'Not Found'.encode('utf-8');
+    response('404 Not Found', [('Content-Type', 'text/plain'), ('Content-length', str(len(result)))]);
+    yield result;
 
 class PathDispatcher:
     def __init__(self):
