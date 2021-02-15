@@ -10,19 +10,19 @@ networks:
       external: true
       
 services:
-  ip_discover:
-    container_name: ip_discover
+  microee-pyload:
+    container_name: microee-pyload
     image: chunhui2001/alpine:3.13.python-3.8.7
-    hostname: ip_discover
+    hostname: microee-pyload
     mem_limit: 10m
     ports:
       - 17110:8080
     #command: ["sh", "-c", "while true; do echo 1 >/dev/null 2>/dev/null; sleep 1; done"]
-    entrypoint: ["python3", "/root/microee-ipserver/ip-discover.py"]
+    entrypoint: ["python3", "/root/microee-pyload/wsgi/main.py"]
     volumes:
       # centos7 as the host and container with selinux enabled.
       # 在 centos7 下需执行: chcon -Rt svirt_sandbox_file_t config/
-      - ./microee-ipserver:/root/microee-ipserver:ro
+      - ./microee-pyload:/root/microee-pyload:ro
     restart: always
     networks:
         br0:
