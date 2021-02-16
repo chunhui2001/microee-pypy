@@ -1,6 +1,7 @@
-from resty import PathDispatcher;
+from wsgi.resty import PathDispatcher;
 from wsgiref.simple_server import make_server;
-from IPDiscover import IPRange;
+
+from wsgi.IPDiscover import IPRange
 
 ### curl -i -v http://localhost:17110/ip_ranged
 ### https://docs.pylonsproject.org/projects/pyramid-cookbook/en/latest/testing/testing_post_curl.html
