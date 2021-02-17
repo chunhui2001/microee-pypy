@@ -14,15 +14,15 @@ services:
     container_name: microee.pyload
     image: chunhui2001/debian_10:python3.8.6.mpl
     hostname: microee.pyload
-    mem_limit: 10m
+    mem_limit: 300m
     ports:
       - 17110:8080
-    command: ["/bin/bash", "-c", "while true; do echo 1 >/dev/null 2>/dev/null; sleep 1; done"]
-    #entrypoint: ["python3", "/root/microee-pyload/wsgi_main.py"]
+    #command: ["/bin/bash", "-c", "while true; do echo 1 >/dev/null 2>/dev/null; sleep 1; done"]
+    entrypoint: ["python3", "/root/microee-pyload/wsgi_main.py"]
     volumes:
       # centos7 as the host and container with selinux enabled.
       # 在 centos7 下需执行: chcon -Rt svirt_sandbox_file_t config/
-      - ./microee-pyload:/root/microee-pyload:rw
+      - ./microee-pyload:/root/microee-pyload:ro
     restart: always
     networks:
         br0:
