@@ -45,9 +45,6 @@ class KLine:
         # return the entire file
         if 'wsgi.file_wrapper' in environ:
             # Return env[wsgi.fw](file, block size)
-            return environ['wsgi.file_wrapper'](the_file, 1024)
+            return environ['wsgi.file_wrapper'](the_file, 1024);
         else:
-            return iter(lambda: the_file.read(1024), '')
-
-if __name__ == '__main__':
-    KLine().plt();
+            return iter(lambda: the_file.read(1024), '');
